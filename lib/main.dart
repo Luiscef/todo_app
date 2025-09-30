@@ -36,13 +36,14 @@ class _TodoHomePageState extends State<TodoHomePage> {
   final TextEditingController _controller = TextEditingController();
 
   void _addTask() {
-  if (_controller.text.isNotEmpty) {
-    setState(() {
-      _tasks.add(Task(_controller.text));
-      _controller.clear();
-    });
+    if (_controller.text.isNotEmpty) {
+      setState(() {
+        _tasks.add(Task(_controller.text));
+        _controller.clear();
+      });
+    }
   }
-}
+
   void _removeTask(int index) {
     setState(() {
       _tasks.removeAt(index);
@@ -52,10 +53,7 @@ class _TodoHomePageState extends State<TodoHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Mis Tareas"),
-        centerTitle: true,
-      ),
+      appBar: AppBar(title: const Text("Mis Tareas"), centerTitle: true),
       body: Column(
         children: [
           Padding(
@@ -75,7 +73,7 @@ class _TodoHomePageState extends State<TodoHomePage> {
                 ElevatedButton(
                   onPressed: _addTask,
                   child: const Icon(Icons.add),
-                )
+                ),
               ],
             ),
           ),
@@ -84,30 +82,33 @@ class _TodoHomePageState extends State<TodoHomePage> {
               itemCount: _tasks.length,
               itemBuilder: (context, index) {
                 return Card(
-  margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-  child: ListTile(
-    leading: Checkbox(
-      value: _tasks[index].done,
-      onChanged: (value) {
-        setState(() {
-          _tasks[index].done = value!;
-        });
-      },
-    ),
-    title: Text(
-      _tasks[index].title,
-      style: TextStyle(
-        decoration: _tasks[index].done
-            ? TextDecoration.lineThrough
-            : TextDecoration.none,
-      ),
-    ),
-    trailing: IconButton(
-      icon: const Icon(Icons.delete, color: Colors.red),
-      onPressed: () => _removeTask(index),
-    ),
-  ),
-);
+                  margin: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 6,
+                  ),
+                  child: ListTile(
+                    leading: Checkbox(
+                      value: _tasks[index].done,
+                      onChanged: (value) {
+                        setState(() {
+                          _tasks[index].done = value!;
+                        });
+                      },
+                    ),
+                    title: Text(
+                      _tasks[index].title,
+                      style: TextStyle(
+                        decoration: _tasks[index].done
+                            ? TextDecoration.lineThrough
+                            : TextDecoration.none,
+                      ),
+                    ),
+                    trailing: IconButton(
+                      icon: const Icon(Icons.delete, color: Colors.red),
+                      onPressed: () => _removeTask(index),
+                    ),
+                  ),
+                );
               },
             ),
           ),
@@ -116,6 +117,7 @@ class _TodoHomePageState extends State<TodoHomePage> {
     );
   }
 }
+
 class Task {
   String title;
   bool done;
