@@ -80,27 +80,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    controller: _inputController,
-                    decoration: const InputDecoration(
-                      hintText: "Escribe una tarea...",
-                      border: OutlineInputBorder(),
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 10),
-                ElevatedButton(
-                  onPressed: _addTask,
-                  child: const Icon(Icons.add),
-                )
-              ],
-            ),
-          ),
+          
           Expanded(
             child: _tasks.isEmpty
                 ? const Center(child: Text("No hay tareas agregadas !"))
